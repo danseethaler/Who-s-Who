@@ -2,7 +2,7 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {Menu, Container} from 'semantic-ui-react'
 
-import {colors} from './style'
+import {Colorize} from './Components/Bits'
 
 const routes = [
   {key: '/', name: 'Home'},
@@ -19,7 +19,7 @@ const TopMenu = ({history}) => (
           history.push('/')
         }}
       >
-        Who's Who<span style={{color: colors.accent}}>?</span>
+        Who's Who<Colorize>?</Colorize>
       </Menu.Item>
       <Menu.Menu position="right">
         {routes.map(({name, key}) => (

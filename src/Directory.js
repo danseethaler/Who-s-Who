@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {
   Container,
   Dropdown,
@@ -9,8 +10,7 @@ import {
 } from 'semantic-ui-react'
 
 import UserCard from './UserCard'
-import {Spacer} from './Components/Bits'
-import {isUnique} from './utils'
+import {Spacer, Colorize} from './Components/Bits'
 
 const options = [
   {key: 'name', text: 'Name', value: 'name'},
@@ -45,6 +45,9 @@ class Directory extends Component {
     const {loading} = this.props
     const users = this.props.users.filter(
       ({firstName = '', lastName = '', jobTitle = ''}) => {
+        if (!this.state.search) {
+          return true
+        }
         if (this.state.searchCategory === 'name') {
           return compareStrings(firstName + lastName, this.state.search)
         }
@@ -58,12 +61,14 @@ class Directory extends Component {
           <Spacer size="large">
             <Header as="h2">
               Find who you're looking for
-              <Header.Subheader color="orange">
+              <Header.Subheader>
                 Search the entire company roster by name or position
               </Header.Subheader>
             </Header>
           </Spacer>
-          <Divider horizontal>Meet Our Team</Divider>
+          <Divider horizontal>
+            <Colorize color="accent">Meet Our Team</Colorize>
+          </Divider>
           <Spacer size="small">
             <Input
               onChange={({target: {value: search}}) => {
@@ -108,6 +113,10 @@ class Directory extends Component {
       </div>
     )
   }
+}
+
+Directory.propTypes = {
+  users: PropTypes.array.isRequired,
 }
 
 export default Directory

@@ -3,13 +3,13 @@ import {Header, Container, Button} from 'semantic-ui-react'
 import {withRouter} from 'react-router'
 
 import {Spacer} from './Components/Bits'
-import {colors} from './style'
+import {Colorize} from './Components/Bits'
 
 const Home = ({history}) => (
   <Container>
     <Spacer size="large">
       <Header as="h2">
-        Welcome to Who's Who<span style={{color: colors.accent}}>?</span>
+        Welcome to Who's Who<Colorize>?</Colorize>
         <Header.Subheader color="orange">
           Get to know you games and a company roster
         </Header.Subheader>
