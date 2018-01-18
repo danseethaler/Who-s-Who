@@ -86,19 +86,22 @@ class Directory extends Component {
               iconPosition="left"
               placeholder="Search..."
             />
-            <Container
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-              }}
-            >
-              {users.length ? (
-                users.map(user => <UserCard key={user.id} {...user} />)
-              ) : (
-                <KeepSearching loading={loading} />
-              )}
+            <Container>
+              <Spacer
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}
+                size="micro"
+              >
+                {users.length ? (
+                  users.map(user => <UserCard key={user.id} {...user} />)
+                ) : (
+                  <KeepSearching loading={loading} />
+                )}
+              </Spacer>
             </Container>
           </Spacer>
         </Container>

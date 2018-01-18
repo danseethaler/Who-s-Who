@@ -8,6 +8,8 @@ const sizeMap = {
   micro: 20,
 }
 
-export const Spacer = ({size, children}) => (
-  <div style={{margin: `${sizeMap[size]}px 0`}}>{children}</div>
+export const Spacer = ({size, children, style = {}, ...rest}) => (
+  <div style={{margin: `${sizeMap[size]}px 0`, ...style}} {...rest}>
+    {children}
+  </div>
 )
