@@ -6,7 +6,7 @@ import Home from './Home'
 import Directory from './Directory'
 import Menu from './Menu'
 import NoMatch from './NoMatch'
-import {hasValidImage} from './utils'
+import {hasValidImage, isCurrentEmployee} from './utils'
 
 class Item extends Component {
   state = {
@@ -21,7 +21,10 @@ class Item extends Component {
     axios
       .get('https://willowtreeapps.com/api/v1.0/profiles/')
       .then(({data: users}) => {
-        this.setState({users: users.filter(hasValidImage), loading: false})
+        this.setState({
+          users: users.filter(hasValidImage).filter(isCurrentEmployee),
+          loading: false,
+        })
       })
   }
 

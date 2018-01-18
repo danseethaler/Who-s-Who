@@ -4,5 +4,7 @@ export const placeholderImage =
 export const hasValidImage = ({headshot: {url}}) =>
   url && url !== placeholderImage
 
+export const isCurrentEmployee = ({jobTitle}) => jobTitle
+
 export const isUnique = (position, i, array) =>
   position && array.indexOf(position) === i
