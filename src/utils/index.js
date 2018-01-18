@@ -1,5 +1,7 @@
 import {shuffle} from '@danseethaler/ut'
 
+import {sizes} from './utils.fixtures'
+
 export const placeholderImage =
   '//images.contentful.com/3cttzl4i3k1h/5ZUiD3uOByWWuaSQsayAQ6/c630e7f851d5adb1876c118dc4811aed/featured-image-TEST1.png'
 
@@ -20,4 +22,12 @@ export const getOptions = (options, selection, count = 5) => {
   options = shuffle(options, true)
 
   return shuffle([selection, ...options.slice(0, count - 1)])
+}
+
+export const getSize = size => {
+  const match = sizes.find(({label, width}) => {
+    return size <= width || label === 'xl'
+  })
+
+  return match.label
 }

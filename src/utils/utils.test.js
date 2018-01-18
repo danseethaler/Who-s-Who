@@ -1,4 +1,4 @@
-import {getOptions} from './index'
+import {getOptions, getSize} from './index'
 import {options} from './utils.fixtures'
 
 const selection = 'c'
@@ -21,5 +21,13 @@ describe('Utility functions', () => {
 
     const result = getOptions(optionsWithoutSelection, selection, 3)
     expect(result.indexOf(selection)).toBeGreaterThan(-1)
+  })
+
+  it('getSize should return xl on giant size', () => {
+    expect(getSize(5000)).toEqual('xl')
+  })
+
+  it('getSize should return phone on mini size', () => {
+    expect(getSize(5)).toEqual('phone')
   })
 })
