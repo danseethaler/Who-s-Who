@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@danseethaler/ut": "^0.0.2",
     "axios": "^0.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -13,7 +14,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && firebase deploy",
+    "build": "react-scripts build",
+    "deploy": "npm test && npm run build && firebase deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
