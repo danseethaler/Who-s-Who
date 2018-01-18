@@ -5,7 +5,6 @@ import {Menu, Container} from 'semantic-ui-react'
 import {Colorize} from './Components/Bits'
 
 const routes = [
-  {key: '/', name: 'Home'},
   {key: '/game', name: 'Game'},
   {key: '/directory', name: 'Directory'},
 ]
