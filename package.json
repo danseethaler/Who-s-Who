@@ -18,7 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm test && npm run build && firebase deploy",
+    "deploy":
+      "CI=true react-scripts test --env=jsdom || exit 0 && npm run build && firebase deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
