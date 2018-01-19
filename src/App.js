@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
+import {endpoint} from './config'
 import Home from './Home'
 import Directory from './Directory'
 import Menu from './Menu'
 import NoMatch from './NoMatch'
-import {hasValidImage, isCurrentEmployee} from './utils'
+import {hasValidImage, isCurrentEmployee, standardizeImageSize} from './utils'
 
 class Item extends Component {
   state = {
@@ -18,11 +19,12 @@ class Item extends Component {
   }
 
   updateUsers = () => {
-    axios
-      .get('https://willowtreeapps.com/api/v1.0/profiles/')
-      .then(({data: users}) => {
+    axios.get(endpoint).then(({data: users}) => {
         this.setState({
-          users: users.filter(hasValidImage).filter(isCurrentEmployee),
+        users: users
+          .filter(hasValidImage)
+          .filter(isCurrentEmployee)
+          .map(standardizeImageSize),
           loading: false,
         })
       })

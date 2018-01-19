@@ -13,6 +13,11 @@ export const isCurrentEmployee = ({jobTitle}) => jobTitle
 export const isUnique = (position, i, array) =>
   position && array.indexOf(position) === i
 
+export const standardizeImageSize = user => {
+  user.headshot.url = user.headshot.url + '?h=250'
+  return user
+}
+
 export const getOptions = (options, selection, count = 5) => {
   options = options.filter(isUnique)
   if (options.length <= count) return options
