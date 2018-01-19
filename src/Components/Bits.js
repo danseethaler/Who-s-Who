@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const sizeMap = {
   jumbo: 100,
@@ -15,6 +16,10 @@ export const Spacer = ({size, children, style = {}, ...rest}) => (
     {children}
   </div>
 )
+
+Spacer.propTypes = {
+  size: PropTypes.oneOf(Object.keys(sizeMap)),
+}
 
 export const Colorize = ({color = 'accent', children, style = {}, ...rest}) => (
   <span style={{color: colorMap[color], ...style}} {...rest}>

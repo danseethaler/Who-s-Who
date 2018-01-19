@@ -11,7 +11,7 @@ const Home = ({history}) => (
       <Header as="h2">
         Welcome to Who's Who<Colorize>?</Colorize>
         <Header.Subheader color="orange">
-          Get to know you games and a company roster
+          WillowTree company roster with a game
         </Header.Subheader>
       </Header>
     </Spacer>

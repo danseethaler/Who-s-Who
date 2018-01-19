@@ -4,8 +4,8 @@ body {
   font-family: sans-serif;
 }
 .ui.card:first-child {
-  margin-top: 1em;
+  margin-top: 1em !important;
 }
 .ui.card:last-child {
-  bottom: 1em;
+  bottom: 1em !important;
 }
