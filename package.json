@@ -5,6 +5,8 @@
   "dependencies": {
     "@danseethaler/ut": "^0.0.2",
     "axios": "^0.17.1",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.11.4",
     "react": "^16.2.0",
     "react-confetti": "^2.0.2",
     "react-dom": "^16.2.0",

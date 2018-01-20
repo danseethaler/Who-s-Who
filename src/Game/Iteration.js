@@ -5,29 +5,35 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 import {shuffle} from '@danseethaler/ut'
 
 import {Spacer} from '../Components/Bits'
+import {
+  SortableAvatarList,
+  SortableAvatar,
+  ProfileItemList,
+  ProfileItem,
+} from './StyledComponents'
 
 const SortableItem = SortableElement(
-  ({sortIndex, nameFirst, headshot: {url, alt}}) => (
-    <img
+  ({nameFirst, headshot: {url, alt}, bounceDemo}) => (
+    <SortableAvatar
       src={url}
       alt={alt}
-      className={'sortable-avatar ' + (sortIndex === 0 ? 'sort' : '')}
+      className={bounceDemo ? 'sort-bounce' : ''}
     />
   )
 )
 
-const SortableList = SortableContainer(({items}) => {
+const SortableList = SortableContainer(({items, index: parentIndex}) => {
   return (
-    <div className="sortable-list">
+    <SortableAvatarList>
       {items.map((item, index) => (
         <SortableItem
           key={`item-${index}`}
           index={index}
-          sortIndex={index}
+          bounceDemo={parentIndex === 0 && index === 0}
           {...item}
         />
       ))}
-    </div>
+    </SortableAvatarList>
   )
 })
 
@@ -65,7 +71,7 @@ class Iteration extends Component {
   }
 
   render() {
-    const {peeking} = this.props
+    const {peeking, index} = this.props
     return (
       <Container style={{width: 300}}>
         <div
@@ -76,25 +82,17 @@ class Iteration extends Component {
         >
           <SortableList
             items={this.state.shuffledOptions}
+            index={index}
             onSortEnd={this.onSortEnd}
             lockAxis="y"
           />
-          <div style={{marginLeft: 18}}>
+          <ProfileItemList>
             {this.state.options.map(
               ({id, firstName, lastName, jobTitle}, index) => {
                 let correct = this.state.shuffledOptions[index].id === id
 
                 return (
-                  <div
-                    key={id}
-                    style={{
-                      display: 'flex',
-                      height: 80,
-                      paddingTop: 20,
-                      flexGrow: 1,
-                      marginBottom: 8,
-                    }}
-                  >
+                  <ProfileItem key={id}>
                     <Header as="h4">
                       {firstName} {lastName}
                       <Header.Subheader>{jobTitle}</Header.Subheader>
@@ -106,11 +104,11 @@ class Iteration extends Component {
                         />
                       ) : null}
                     </Header>
-                  </div>
+                  </ProfileItem>
                 )
               }
             )}
-          </div>
+          </ProfileItemList>
         </div>
 
         <Spacer size="small">

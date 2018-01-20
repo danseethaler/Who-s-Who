@@ -9,16 +9,7 @@ import './game.css'
 import {Spacer} from '../Components/Bits'
 import {duration} from '../config'
 import Confetti from './Confetti'
-
-const Timer = () => (
-  <div>
-    <div
-      className="timer-bar"
-      style={{animation: `timer ${duration}s linear`}}
-    />
-    <div className="timer-bar-base" />
-  </div>
-)
+import {Timer} from './StyledComponents'
 
 const greatJob = {
   emoji: '🎉',
@@ -174,12 +165,13 @@ class Game extends Component {
     return (
       <div>
         <Container>
-          <Timer />
+          <Timer duration={duration} />
           <PeekingToggle peeking={peeking} onToggle={this.togglePeeking} />
           <SwipeableViews index={viewIndex}>
             {userChunks.map((users, index) => (
               <Iteration
                 key={index}
+                index={index}
                 users={users}
                 record={this.recordIteration}
                 peeking={peeking}
