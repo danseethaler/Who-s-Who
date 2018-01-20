@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 
 import {Spacer, Colorize} from './Components/Bits'
 
-const Home = ({history}) => (
+const NoMatch = ({history}) => (
   <Container>
     <Spacer size="large">
       <Header as="h2">
@@ -24,4 +24,4 @@ const Home = ({history}) => (
   </Container>
 )
 
-export default withRouter(Home)
+export default withRouter(NoMatch)

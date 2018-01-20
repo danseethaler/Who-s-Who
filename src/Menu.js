@@ -5,19 +5,14 @@ import {Menu, Container} from 'semantic-ui-react'
 import {Colorize} from './Components/Bits'
 
 const routes = [
-  {key: '/game', name: 'Game'},
+  {key: '/', name: 'Game'},
   {key: '/directory', name: 'Directory'},
 ]
 
 const TopMenu = ({history}) => (
-  <Menu attached>
+  <Menu attached borderless>
     <Container>
-      <Menu.Item
-        header
-        onClick={() => {
-          history.push('/')
-        }}
-      >
+      <Menu.Item header>
         Who's Who<Colorize>?</Colorize>
       </Menu.Item>
       <Menu.Menu position="right">

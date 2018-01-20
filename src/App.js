@@ -3,7 +3,6 @@ import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import {endpoint} from './config'
-import Home from './Home'
 import Directory from './Directory'
 import GameIntro from './GameIntro'
 import Game from './Game/index'
@@ -38,13 +37,12 @@ class Item extends Component {
         <div>
           <Menu />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={GameIntro} />
             <Route
               path="/directory"
               exact
               render={() => <Directory {...this.state} />}
             />
-            <Route exact path="/game" component={GameIntro} />
             <Route
               exact
               path="/game/active"
