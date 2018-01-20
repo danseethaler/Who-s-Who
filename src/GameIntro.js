@@ -14,7 +14,7 @@ const Game = ({history}) => (
         <Container textAlign="center" style={{margin: '10px 0'}}>
           <Spacer size={mobile ? 'small' : 'large'}>
             <Header as="h2">
-              Match the pictures with the names.
+              Match pictures with names.
               <Header.Subheader>
                 Find out how well you know your team!
               </Header.Subheader>
@@ -24,7 +24,9 @@ const Game = ({history}) => (
         <GamePreview />
         <Container textAlign="center" style={{margin: '10px 0'}}>
           <Spacer size={mobile ? 'small' : 'large'}>
-            <Header as="h2">You have {duration} seconds.</Header>
+            <Header style={{paddingBottom: 12}} sub>
+              You have {duration} seconds.
+            </Header>
             <Button
               size="large"
               onClick={() => {

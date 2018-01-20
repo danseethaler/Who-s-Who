@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: -webkit-grab;
 }
 .sortable-avatar {
   z-index: 100;
