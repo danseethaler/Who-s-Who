@@ -20,37 +20,51 @@ const Timer = () => (
   </div>
 )
 
-const affirmations = [
-  'You must have been practicing!',
-  'Have you been studying on your freetime?',
-  'Wow... we need to get a leaderboard up!',
-]
+const greatJob = {
+  emoji: '🎉',
+  header: 'great job!',
+  response: [
+    'You are a real people person.',
+    'You must have been practicing.',
+    'Have you been studying in your freetime?',
+  ],
+}
 
-const Summary = ({correct, attempts, startOver}) => (
-  <Spacer size="medium">
-    <Confetti />
-    <Container textAlign="center">
-      <Header as="h2" icon>
-        <span
-          style={{display: 'block', fontSize: '2em', margin: 20}}
-          role="img"
-          aria-label="party"
-        >
-          🎉
-        </span>
-        {correct} points - great Job!
-        <Header.Subheader>{random(affirmations)}</Header.Subheader>
-      </Header>
-      <Spacer size="small">
-        <Divider horizontal>Play Again?</Divider>
-      </Spacer>
-      <Button onClick={startOver} color="blue" icon labelPosition="left">
-        <Icon name="repeat" />
-        Replay
-      </Button>
-    </Container>
-  </Spacer>
-)
+const needsWork = {
+  emoji: '😕',
+  header: 'hmmm...',
+  response: ['Time for some face to face.', 'Maybe start with the directory.'],
+}
+
+const Summary = ({correct, attempts, startOver}) => {
+  const {emoji, response, header} = correct < 10 ? needsWork : greatJob
+
+  return (
+    <Spacer size="medium">
+      <Confetti />
+      <Container textAlign="center">
+        <Header as="h2" icon>
+          <span
+            style={{display: 'block', fontSize: '2em', margin: 20}}
+            role="img"
+            aria-label="party"
+          >
+            {emoji}
+          </span>
+          {correct} points - {header}
+          <Header.Subheader>{random(response)}</Header.Subheader>
+        </Header>
+        <Spacer size="small">
+          <Divider horizontal>Play Again?</Divider>
+        </Spacer>
+        <Button onClick={startOver} color="blue" icon labelPosition="left">
+          <Icon name="repeat" />
+          Replay
+        </Button>
+      </Container>
+    </Spacer>
+  )
+}
 
 const PeekingToggle = ({peeking, onToggle}) => (
   <Header
@@ -71,7 +85,15 @@ const PeekingToggle = ({peeking, onToggle}) => (
       color={peeking ? 'blue' : 'grey'}
       disabled={!peeking}
     />
-    <Header.Content>Peek</Header.Content>
+    <Header.Content
+      style={{
+        paddingTop: 2,
+        color: '#aaa',
+        paddingLeft: 2,
+      }}
+    >
+      Peek
+    </Header.Content>
   </Header>
 )
 
@@ -85,6 +107,8 @@ class Game extends Component {
     finished: false,
     peeking: false,
   }
+
+  timeout = null
 
   state = this.initialState
 
@@ -121,11 +145,14 @@ class Game extends Component {
 
   togglePeeking = () => {
     const peek = !this.state.peeking
+    if (this.timeout) clearTimeout(this.timeout)
+
     if (peek) {
       setTimeout(() => {
-        this.setState({peeking: false})
+        this.timeout = this.setState({peeking: false})
       }, 1500)
     }
+
     this.setState({peeking: peek})
   }
 
